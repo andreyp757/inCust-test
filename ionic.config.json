@@ -1,0 +1,7 @@
+{
+  "name": "inCust-test",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
