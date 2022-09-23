@@ -1,0 +1,51 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home" color="secondary"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ (product$ | async) ? (product$ | async).name : 'Loading' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="product" *ngIf="product$ | async">
+    <div class="product__img" [style.backgroundImage]="'url(' + (product$ | async).image + ')'"></div>
+    <div class="product__attr">
+      Model: {{ (product$ | async).model }}
+    </div>
+    <div class="product__title">
+      {{ (product$ | async).name }}
+    </div>
+    <div class="product__desc">
+      {{ (product$ | async).description }}
+    </div>
+    <div [formGroup]="amountsForm">
+      <div class="product__calc-area">
+        <div class="product__calc-area__title">Quantity:</div>
+        <input type="number" formControlName="quantity">
+        <div class="product__calc-area__variant" (click)="setQuantity(3)">3</div>
+        <div class="product__calc-area__variant" (click)="setQuantity(5)">5</div>
+        <div class="product__calc-area__variant" (click)="setQuantity(10)">10</div>
+        <div class="product__calc-area__variant" (click)="setQuantity(10)">15</div>
+      </div>
+      <div class="product__calc-area">
+        <div class="product__calc-area__title">Price:</div>
+        <input type="number" formControlName="price">
+        <div class="product__calc-area__variant" (click)="setPrice(10)">$10</div>
+        <div class="product__calc-area__variant" (click)="setPrice(50)">$50</div>
+        <div class="product__calc-area__variant" (click)="setPrice(100)">$100</div>
+      </div>
+    </div>
+    <div class="product__price">
+      Price per Unit: $ {{ (product$ | async).price }}
+    </div>
+    <div class="product__attr">
+      Manufacturer: {{ (product$ | async).manufacturer }}
+    </div>
+    <div class="product__cats">
+      <span class="product__cats__item" *ngFor="let cat of (product$ | async).category">
+        {{ cat.name }}
+      </span>
+    </div>
+  </div>
+</ion-content>

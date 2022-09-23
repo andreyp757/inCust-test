@@ -1,0 +1,38 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-title>Searchbar</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <input type="text"
+      placeholder="Search"
+      class="search-input"
+      [ngModel]="searchInput$ | async"
+      (ngModelChange)="searchInputHandler($event)">
+    <div class="search-input-clear"
+      *ngIf="(searchInput$ | async) && (searchInput$ | async).length"
+      (click)="clearSearch()">
+      &#10005;
+    </div>
+    <div class="search-input-icon"></div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="50" pullMax="100" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-virtual-scroll [items]="productsList$ | async" approxItemHeight="120px">
+    <div class="product" *virtualItem="let item" (click)="goProduct(item.sku)">
+      <img class="product__img" [src]="item.image" />
+      <div class="product__info">
+        <div class="product__title">{{ item.name }}</div>
+        <div class="product__desc">{{ item.description }}</div>
+      </div>
+    </div>
+  </ion-virtual-scroll>
+</ion-content>
