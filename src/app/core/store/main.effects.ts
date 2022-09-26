@@ -5,7 +5,7 @@ import { catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ApiService } from '../services/api.service';
-import { selectProducts } from './main.store';
+import { MainState, selectProducts } from './main.store';
 
 @Injectable()
 export class MainEffects {
@@ -35,7 +35,7 @@ export class MainEffects {
     })
   ));
 
-  constructor(private actions$: Actions, private apiService: ApiService, private store: Store<any>) { }
+  constructor(private actions$: Actions, private apiService: ApiService, private store: Store<MainState>) { }
 
   private findProductBySku(products, sku) {
     const foundProduct = products.find(item => item.sku === Number(sku));

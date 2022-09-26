@@ -33,7 +33,7 @@ export class ProductPage implements OnInit, OnDestroy {
       this.router.navigate(['/home']);
     }
 
-    this.product$.pipe(filter(res => res), take(1)).subscribe(product => {
+    this.product$.pipe(filter(res => !!res), take(1)).subscribe(product => {
       this.productPrice = product.price;
       this.amountsForm.get('price').setValue(this.productPrice);
     });

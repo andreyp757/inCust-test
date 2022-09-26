@@ -3,7 +3,13 @@
     <ion-title>Searchbar</ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <input type="text"
+    <ion-searchbar
+      show-clear-button="focus"
+      placeholder="Search"
+      [ngModel]="searchInput$ | async"
+      (ngModelChange)="searchInputHandler($event)">
+    </ion-searchbar>
+    <!-- <input type="text"
       placeholder="Search"
       class="search-input"
       [ngModel]="searchInput$ | async"
@@ -12,8 +18,8 @@
       *ngIf="(searchInput$ | async) && (searchInput$ | async).length"
       (click)="clearSearch()">
       &#10005;
-    </div>
-    <div class="search-input-icon"></div>
+    </div> -->
+    <!-- <div class="search-input-icon"></div> -->
   </ion-toolbar>
 </ion-header>
 

@@ -1,9 +1,27 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import { MainActions } from './index';
 
+export interface Product {
+  category: {
+    id: string;
+    name: string;
+  }[];
+  description: string;
+  image: string;
+  manufacturer: string;
+  model: string;
+  name: string;
+  price: number;
+  shipping: number;
+  sku: number;
+  type: string;
+  upc: string;
+  url: string;
+}
+
 export interface MainState {
-  productsList: any[];
-  currentProduct: any;
+  productsList: Product[];
+  currentProduct: Product;
 }
 
 const initialState: MainState = {

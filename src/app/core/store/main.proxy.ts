@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FETCH_PRODUCTS, FETCH_PRODUCT_BY_SKU, SET_CURRENT_PRODUCT } from './main.actions';
-import { selectCurrentProduct, selectProducts } from './main.store';
+import { MainState, selectCurrentProduct, selectProducts } from './main.store';
 
 @Injectable({ providedIn: 'root' })
 export class MainProxy {
@@ -9,7 +9,7 @@ export class MainProxy {
   productsList$ = this.store.select(selectProducts);
   currentProduct$ = this.store.select(selectCurrentProduct);
 
-  constructor(private store: Store<any>) {
+  constructor(private store: Store<MainState>) {
   }
 
   fetchProducts() {

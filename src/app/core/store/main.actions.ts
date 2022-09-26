@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { Product } from './main.store';
 
 const MAIN_KEY = '[Main]';
 
@@ -8,7 +9,7 @@ export const FETCH_PRODUCTS = createAction(
 
 export const FETCH_PRODUCTS_SUCCESS = createAction(
   `${MAIN_KEY} fetch products success`,
-  props<{ data: any[] }>()
+  props<{ data: Product[] }>()
 );
 
 export const FETCH_PRODUCTS_ERROR = createAction(
@@ -18,10 +19,10 @@ export const FETCH_PRODUCTS_ERROR = createAction(
 
 export const FETCH_PRODUCT_BY_SKU = createAction(
   `${MAIN_KEY} fetch product by sku`,
-  props<{ sku: any }>()
+  props<{ sku: number }>()
 );
 
 export const SET_CURRENT_PRODUCT = createAction(
   `${MAIN_KEY} clear current product`,
-  props<{ product: any }>()
+  props<{ product: Product }>()
 );
